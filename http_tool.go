@@ -42,7 +42,7 @@ func Post(logid, url, param string, flags ...bool) (string, error) {
 			logger.Error(logid, err.Error())
 		}
 		if retry {
-			Put(logid, url, param, 1)
+			go Put(logid, url, param, 1)
 		}
 		return "", errors.New("server_inner_error")
 	}
@@ -60,7 +60,7 @@ func Post(logid, url, param string, flags ...bool) (string, error) {
 			err = errors.New("server_inner_error")
 		}
 		if retry {
-			Put(logid, url, param, 1)
+			go Put(logid, url, param, 1)
 		}
 		return "", err
 	}
@@ -73,7 +73,7 @@ func Post(logid, url, param string, flags ...bool) (string, error) {
 			logger.Error(logid, err.Error())
 		}
 		if retry {
-			Put(logid, url, param, 1)
+			go Put(logid, url, param, 1)
 		}
 		return "", errors.New("server_inner_error")
 	}
@@ -138,7 +138,7 @@ func Get(logid, url, param string, retrys ...bool) (string, error) {
 			err = errors.New("server_inner_error")
 		}
 		if retry {
-			Put(logid, url, param, 2)
+			go Put(logid, url, param, 2)
 		}
 		return "", err
 	}
@@ -147,7 +147,7 @@ func Get(logid, url, param string, retrys ...bool) (string, error) {
 	if err != nil {
 		logger.Error("remote", err.Error())
 		if retry {
-			Put(logid, url, param, 2)
+			go Put(logid, url, param, 2)
 		}
 		return "", errors.New("server_inner_error")
 	}

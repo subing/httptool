@@ -52,7 +52,7 @@ func retry() {
 		cd := c.Value.(*retrydata)
 		isDelete := false
 		if cd.flag == 1 {
-			_, err = Post(cd.logid, cd.url, cd.param, true)
+			_, err = Post(cd.logid, cd.url, cd.param, false)
 		} else {
 			_, err = Get(cd.logid, cd.url, cd.param)
 		}
